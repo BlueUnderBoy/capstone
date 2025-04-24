@@ -10,9 +10,6 @@
 
     <%= render partial: "shared/cdn_assets" %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
@@ -25,13 +22,26 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
+
 
   <body>
 
     <%= render partial: "shared/navbar" %>
-    <div class="container"
+    <div class="container">
+      <% if notice.present? %>
+        <%= render partial: "shared/flash", locals: { message: notice, css_class: "success" } %>
+      <% end %>
+      
+      <% if alert.present? %>
+        <%= render partial: "shared/flash", locals: { message: alert, css_class: "danger" } %>
+      <% end %>
+    </div>
+    <div class="container" style="display: flex; justify-content: center;">
       <%= yield %>
     </div>
+
   </body>
+
 </html>
