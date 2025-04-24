@@ -26,5 +26,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :own_goals, class_name: "Goal", foreign_key: "owner_id"
+  has_many :own_goals, foreign_key: "owner_id", class_name: "Goal"
+  has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
+  has_many :received_friend_requests, foreign_key: :recipient_id, class_name: "FriendRequest"
 end
