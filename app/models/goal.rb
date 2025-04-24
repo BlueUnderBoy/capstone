@@ -27,6 +27,4 @@ class Goal < ApplicationRecord
   validates :image, presence: true 
 
   scope :past_week, -> { where(created_at: 1.week.ago...) }
-
-  emu :status, { saving: "saving", completed: "completed"}
 end
