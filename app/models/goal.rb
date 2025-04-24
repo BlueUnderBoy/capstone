@@ -21,6 +21,8 @@
 #  fk_rails_...  (owner_id => users.id)
 #
 class Goal < ApplicationRecord
+  mount_uploader :image, ImageUploader 
+  
   belongs_to :owner, class_name: "User"
 
   validates :name, presence: true

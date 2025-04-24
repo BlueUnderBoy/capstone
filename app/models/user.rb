@@ -26,6 +26,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  mount_uploader :profile_pic, ImageUploader
 
   has_many :own_goals, foreign_key: "owner_id", class_name: "Goal"
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
