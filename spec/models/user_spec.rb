@@ -6,6 +6,7 @@
 #  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :citext
+#  goals_count            :integer          default(0)
 #  last_name              :citext
 #  profile_pic            :string
 #  remember_created_at    :datetime
