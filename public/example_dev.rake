@@ -5,10 +5,8 @@ task sample_data: :environment do
   # Clean up existing uploaded files
   FileUtils.rm_rf(Rails.root.join("public", "uploads"))
 
-  FollowRequest.destroy_all
-  Comment.destroy_all
-  Like.destroy_all
-  Photo.destroy_all
+  FriendRequest.destroy_all
+  Goal.destroy_all
   User.destroy_all
 
   people = Array.new(10) do
@@ -26,25 +24,14 @@ task sample_data: :environment do
 
   people.each do |person|
     username = person.fetch(:first_name).downcase
-    secret = false
-
-    if ["alice", "carol"].include?(username) || User.where(private: true).count <= 6
-      secret = true
-    end
 
     user = User.create(
       email: "#{username}@example.com",
       password: "password",
       username: username.downcase,
-      name: "#{person[:first_name]} #{person[:last_name]}",
-      bio: Faker::Lorem.paragraph(
-        sentence_count: 2,
-        supplemental: true,
-        random_sentences_to_add: 4
-      ),
-      website: Faker::Internet.url,
-      private: secret,
-      avatar_image: File.open("#{Rails.root}/public/avatars/#{rand(1..10)}.jpeg")
+      first_name: "#{person[:first_name]}",
+      last_name: "#{person[:last_name]}"
+      profile_pic: File.open("#{Rails.root}/public/avatars/#{rand(1..10)}.jpeg")
     )
   end
 
@@ -54,10 +41,7 @@ task sample_data: :environment do
     users.each do |second_user|
       if rand < 0.75
         status = "accepted"
-        if second_user.private?
-          status = "pending"
-        end
-        first_user_follow_request = first_user.sent_follow_requests.create(
+        first_user_friend_request = first_user.sent_friend_requests.create(
           recipient: second_user,
           status: status
         )
@@ -65,10 +49,7 @@ task sample_data: :environment do
 
       if rand < 0.75
         status = "accepted"
-        if first_user.private?
-          status = "pending"
-        end
-        second_user_follow_request = second_user.sent_follow_requests.create(
+        second_user_friend_request = second_user.sent_friend_requests.create(
           recipient: first_user,
           status: status
         )
@@ -77,32 +58,19 @@ task sample_data: :environment do
   end
 
   users.each do |user|
-    rand(15).times do
-      photo = user.own_photos.create(
-        caption: Faker::Quote.jack_handey,
+    rand(3).times do
+      goal = user.own_goals.create(
+        name: {user.first_name}" has a new goal!",
+        amount_needed: "$#{rand(100..1000)}",
+        amount_saved: "$#{rand(0..100)}",
         image: File.open("#{Rails.root}/public/photos/#{rand(1..10)}.jpeg")
       )
-
-      user.followers.each do |follower|
-        if rand < 0.5
-          photo.fans << follower
-        end
-
-        if rand < 0.25
-          comment = photo.comments.create(
-            body: Faker::Quote.jack_handey,
-            author: follower
-          )
-        end
-      end
     end
   end
 
   ending = Time.now
   p "It took #{(ending - starting).to_i} seconds to create sample data."
   p "There are now #{User.count} users."
-  p "There are now #{FollowRequest.count} follow requests."
-  p "There are now #{Photo.count} photos."
-  p "There are now #{Like.count} likes."
-  p "There are now #{Comment.count} comments."
+  p "There are now #{FriendRequest.count} friend requests."
+  p "There are now #{Goal.count} goals."
 end
