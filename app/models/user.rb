@@ -12,6 +12,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -28,10 +29,10 @@ class User < ApplicationRecord
 
   has_many :own_goals, foreign_key: "owner_id", class_name: "Goal"
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
-  has_many :accepted_sent_friend_requests, -> { accepted }, foreign_key: :sender_id, class_name: "FriendRequest"
+  has_many :accepted_sent_friend_requests, -> { where(status: "accepted") }, foreign_key: :sender_id, class_name: "FriendRequest"
 
   has_many :received_friend_requests, foreign_key: :recipient_id, class_name: "FriendRequest"
-  has_many :accepted_received_friend_requests, -> { accepted }, foreign_key: :recipient_id, class_name: "FriendRequest"
+  has_many :accepted_received_friend_requests, -> { where(status: "accepted") }, foreign_key: :recipient_id, class_name: "FriendRequest"
 
   has_many :leaders, through: :accepted_sent_friend_requests, source: :recipient
   has_many :followers, through: :accepted_received_friend_requests, source: :sender
