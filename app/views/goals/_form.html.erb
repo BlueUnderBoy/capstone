@@ -17,6 +17,37 @@
   </div>
 
   <div>
+    <%= form.label :owner_id, style: "display: block" %>
+    <%= form.text_field :owner_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= form_with(model: goal, class: "card-body") do |form| %>
+  <% if goal.errors.any? %>
+    <div id="error_explanation">
+      <ul class="list-unstyled">
+        <% goal.errors.each do |error| %>
+          <li>
+            <div class="alert alert-danger" role="alert">
+              <%= error.full_message %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, class: "form-control" %>
+    <%= form.hidden_field :owner_id, value: current_user.id, class: "form-control" %>
+  </div>
+
+  <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
@@ -31,17 +62,7 @@
     <%= form.text_field :amount_saved %>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :owner_id, style: "display: block" %>
-    <%= form.text_field :owner_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="actions d-grid gap-2">
+    <%= form.submit class: "btn btn-outline-primary btn-block" %>
   </div>
 <% end %>

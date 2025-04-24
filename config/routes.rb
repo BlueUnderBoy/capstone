@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   resources :friend_requests
   resources :goals
+  resources :users, only: [ :index ]
 
   get ":username" => "users#show", as: :user
   
