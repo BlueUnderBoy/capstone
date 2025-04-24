@@ -22,4 +22,11 @@
 #
 class Goal < ApplicationRecord
   belongs_to :owner, class_name: "User"
+
+  validates :name, presence: true
+  validates :image, presence: true 
+
+  scope :past_week, -> { where(created_at: 1.week.ago...) }
+
+  emu :status, { saving: "saving", completed: "completed"}
 end
