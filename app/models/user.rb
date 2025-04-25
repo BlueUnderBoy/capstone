@@ -40,7 +40,7 @@ class User < ApplicationRecord
   has_many :leaders, through: :accepted_sent_friend_requests, source: :recipient
   has_many :followers, through: :accepted_received_friend_requests, source: :sender
 
-  has_many :feed, through: :leaders, source: :own_photos
+  has_many :feed, through: :leaders, source: :own_goals
 
   validates :first_name, presence: true
   validates :last_name, presence: true
