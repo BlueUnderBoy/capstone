@@ -7,7 +7,7 @@
 #  amount_saved  :string
 #  image         :string
 #  name          :string
-#  status        :string           default: "saving"
+#  status        :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  owner_id      :bigint           not null
