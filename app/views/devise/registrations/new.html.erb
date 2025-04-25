@@ -183,26 +183,26 @@
               <% end %>
             </div>
 
-            <!-- avatar_image -->
+            <!-- profile_pic -->
             <div class="form-group">
-              <% avatar_image_was_invalid = resource.errors.include?(:avatar_image) %>
+              <% profile_pic_was_invalid = resource.errors.include?(:profile_pic) %>
 
-              <% avatar_image_class = "form-control" %>
+              <% profile_pic_class = "form-control" %>
 
               <% if was_validated %>
-                <% if avatar_image_was_invalid %>
-                  <% avatar_image_class << " is-invalid" %>
+                <% if profile_pic_was_invalid %>
+                  <% profile_pic_class << " is-invalid" %>
                 <% else %>
-                  <% avatar_image_class << " is-valid" %>
+                  <% profile_pic_class << " is-valid" %>
                 <% end %>
               <% end %>
 
-              <%= f.label :avatar_image %>
+              <%= f.label :profile_pic %>
 
-              <%= f.file_field :avatar_image, :class => avatar_image_class, :placeholder => "Enter avatar image" %>
+              <%= f.file_field :profile_pic, :class => profile_pic_class, :placeholder => "Enter profile pic" %>
 
-              <% if avatar_image_was_invalid %>
-                <% resource.errors.full_messages_for(:avatar_image).each do |message| %>
+              <% if profile_pic_was_invalid %>
+                <% resource.errors.full_messages_for(:profile_pic).each do |message| %>
                   <div class="invalid-feedback d-flex">
                     <%= message %>
                   </div>
