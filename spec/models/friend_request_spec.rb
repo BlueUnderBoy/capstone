@@ -11,8 +11,8 @@
 #
 # Indexes
 #
-#  index_follow_requests_on_recipient_id  (recipient_id)
-#  index_follow_requests_on_sender_id     (sender_id)
+#  index_friend_requests_on_recipient_id  (recipient_id)
+#  index_friend_requests_on_sender_id     (sender_id)
 #
 # Foreign Keys
 #
@@ -21,7 +21,7 @@
 #
 require "rails_helper"
 
-RSpec.describe FollowRequest, type: :model do
+RSpec.describe FriendRequest, type: :model do
   describe "has a belongs_to association defined called 'sender' with Class name 'User'", points: 1 do
     it { should belong_to(:sender).class_name("User") }
   end
