@@ -27,8 +27,10 @@ class Goal < ApplicationRecord
 
   validates :name, presence: true
   validates :image, presence: true 
+  validates :amount_needed, presence: true
 
   scope :past_week, -> { where(created_at: 1.week.ago...) }
+  scope :latest, -> { order(created_at: :desc) }
 
   enum :status, { saving: "saving", completed: "completed" }
 end
