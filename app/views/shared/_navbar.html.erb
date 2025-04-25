@@ -24,10 +24,10 @@
           </li>
           <li class="nav-item"> <!-- DO THIS NEXT!!!-->
             <!--<a class="nav-link" href="/bob/discover"></a>-->
-            <%= link_to "/#{current_user.username}/discover", class: "nav-link" do %>
+            <!--< link_to "/#{current_user.username}/discover", class: "nav-link" do >
               <i class="fas fa-compass fa-fw"></i>
               Discover
-            <% end %> 
+            < end >--> 
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -38,7 +38,7 @@
           <li class="nav-item">
             <!--<a class="nav-link" href="/photos/new">-->
               <%= link_to new_goal_path, class:"nav-link" do %>
-              <i class="fas fa-plus-circle"></i> Add post
+              <i class="fas fa-plus-circle"></i> Add goal
               <% end %>
             </a>
           </li>

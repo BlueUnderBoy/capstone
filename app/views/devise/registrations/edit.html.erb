@@ -195,7 +195,7 @@
 
               <%= f.text_field :first_name, :class => first_name_class, :placeholder => "Enter first name" %>
 
-              <% if name_was_invalid %>
+              <% if first_name_was_invalid %>
                 <% resource.errors.full_messages_for(:first_name).each do |message| %>
                   <div class="invalid-feedback d-flex">
                     <%= message %>
@@ -221,7 +221,7 @@
 
               <%= f.text_field :last_name, :class => last_name_class, :placeholder => "Enter last name" %>
 
-              <% if name_was_invalid %>
+              <% if last_name_was_invalid %>
                 <% resource.errors.full_messages_for(:last_name).each do |message| %>
                   <div class="invalid-feedback d-flex">
                     <%= message %>
