@@ -1,28 +1,34 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[ show edit update destroy ]
 
-  # GET /goals or /goals.json
+  # GET /photos or /photos.json
   def index
     @goals = Goal.all
+
+    @user = User.find(current_user.id)
+    
+    @user.own_goals = Goal.where(owner_id: @user).order(created_at: :desc)
+  
   end
 
-  # GET /goals/1 or /goals/1.json
+  # GET /photos/1 or /photos/1.json
   def show
+    
   end
 
-  # GET /goals/new
+  # GET /photos/new
   def new
     @goal = Goal.new
   end
 
-  # GET /goals/1/edit
+  # GET /photos/1/edit
   def edit
   end
 
-  # POST /goals or /goals.json
+  # POST /photos or /photos.json
   def create
     @goal = Goal.new(goal_params)
-
+ 
     respond_to do |format|
       if @goal.save
         format.html { redirect_to @goal, notice: "Goal was successfully created." }
@@ -34,7 +40,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /goals/1 or /goals/1.json
+  # PATCH/PUT /photos/1 or /photos/1.json
   def update
     respond_to do |format|
       if @goal.update(goal_params)
@@ -47,7 +53,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  # DELETE /goals/1 or /goals/1.json
+  # DELETE /photos/1 or /photos/1.json
   def destroy
     @goal.destroy!
 
@@ -65,6 +71,6 @@ class GoalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def goal_params
-      params.expect(goal: [ :image, :name, :amount_needed, :amount_saved, :status, :owner_id ])
+      params.expect(goal: [ :image, :name, :amount_needed, :amount_saved, :owner_id, :status ])
     end
 end
