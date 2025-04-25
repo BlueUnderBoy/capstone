@@ -20,14 +20,14 @@ describe "User authentication" do
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
     fill_in "Username", with: "alice"
-    attach_file "Avatar image", "#{Rails.root}/spec/support/test_image.jpeg"
+    attach_file "Profile pic", "#{Rails.root}/spec/support/test_image.jpeg"
     click_button "Create User"
 
     expect(page).to have_content("Welcome! You have signed up successfully")
   end
 
   it "allows an existing user to sign in", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
 
     visit "/users/sign_in"
 
@@ -39,7 +39,7 @@ describe "User authentication" do
   end
 
   it "allows a user to sign out", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
 
     visit "/users/sign_in"
 
