@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: follow_requests
+# Table name: friend_requests
 #
 #  id           :bigint           not null, primary key
 #  status       :string           default("pending")

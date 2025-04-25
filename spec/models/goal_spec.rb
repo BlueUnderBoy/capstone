@@ -2,15 +2,15 @@
 #
 # Table name: goals
 #
-#  id             :bigint           not null, primary key
-#  name           :text
-#  image          :string
-#  amount_needed  :string          
-#  amount_saved   :string         default(0)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  owner_id       :bigint           not null
-#  status         :string         default("saving")
+#  id            :bigint           not null, primary key
+#  amount_needed :string
+#  amount_saved  :string
+#  image         :string
+#  name          :string
+#  status        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  owner_id      :bigint           not null
 #
 # Indexes
 #
