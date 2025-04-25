@@ -1,0 +1,27 @@
+<ul class="nav nav-tabs nav-justified mb-1">    
+  <li class="nav-item">
+    <%=
+      active_link_to user_path(user.username),
+        class: "nav-link",
+        active: :exclusive do %>
+
+      Posts
+
+      <span class="badge badge-pill text-bg-secondary">
+        <%= user.own_goals.count %>
+      </span>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
+    <%=
+       %>
+
+      Liked
+
+      <span class="badge badge-pill text-bg-secondary">
+        <%= %>
+      </span>
+    <% end %>
+  </li>
+</ul> 
