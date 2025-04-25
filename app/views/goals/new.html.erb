@@ -1,11 +1,15 @@
-<% content_for :title, "New goal" %>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="display-4">
+        new goal
+      </h1>
 
-<h1>New goal</h1>
+      <%= render 'form', goal: @goal %>
 
-<%= render "form", goal: @goal %>
+      <hr>
 
-<br>
-
-<div>
-  <%= link_to "Back to goals", goals_path %>
+      <%= link_to 'Back', :back, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
 </div>
