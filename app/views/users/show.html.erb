@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-3">
+
+    <%= render "users/user", user: @user %>
+    <%= render "users/profile_nav", user: @user %>
+
+      <!--<ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Posts</a>
+          <= link_to "Posts", user_path(@user.username), class: "nav-link" >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Liked photos</a>
+          <= link_to "Liked photos", liked_path(@user.username), class: "nav-link" >
+        </li>
+      </ul>-->
+      
+    </div>
+  </div>
+
+  <% @user.own_goals.each do |goal| %>
+    <%= render "goals/goal", goal: goal %>
+  <% end %>
+</div>

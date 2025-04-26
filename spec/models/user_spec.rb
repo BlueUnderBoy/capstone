@@ -3,21 +3,16 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  avatar_image           :string           default("avatar_placeholder.png")
-#  bio                    :string
-#  comments_count         :integer          default(0)
 #  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  integer                :integer          default(0)
-#  likes_count            :integer          default(0)
-#  name                   :string
-#  photos_count           :integer          default(0)
-#  private                :boolean          default(TRUE)
+#  first_name             :citext
+#  goals_count            :integer          default(0)
+#  last_name              :citext
+#  profile_pic            :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  username               :citext           not null
-#  website                :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -25,7 +20,6 @@
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_username              (username) UNIQUE
 #
 require "rails_helper"
 
@@ -35,8 +29,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:comments).class_name("Comment").with_foreign_key("author_id") }
   end
 
-  describe "has a has_many association defined called 'own_photos' with Class name 'Photo' and foreign key 'owner_id'", points: 1 do
-    it { should have_many(:own_photos).class_name("Photo").with_foreign_key("owner_id") }
+  describe "has a has_many association defined called 'own_goals' with Class name 'Photo' and foreign key 'owner_id'", points: 1 do
+    it { should have_many(:own_photos).class_name("Goal").with_foreign_key("owner_id") }
   end
 
   describe "has a has_many association defined called 'likes' with Class name 'Like' and foreign key 'fan_id'", points: 1 do
@@ -47,32 +41,32 @@ RSpec.describe User, type: :model do
     it { should have_many(:liked_photos).through(:likes).source(:photo) }
   end
 
-  describe "has a has_many association defined called 'sent_follow_requests' with Class name 'FollowRequest' and foreign key 'sender_id'", points: 1 do
+  describe "has a has_many association defined called 'sent_friend_requests' with Class name 'FriendRequest' and foreign key 'sender_id'", points: 1 do
     it { should have_many(:sent_follow_requests).class_name("FollowRequest").with_foreign_key("sender_id") }
   end
 
-  describe "has a has_many association defined called 'received_follow_requests' with Class name 'FollowRequest' and foreign key 'recipient_id'", points: 1 do
-    it { should have_many(:received_follow_requests).class_name("FollowRequest").with_foreign_key("recipient_id") }
+  describe "has a has_many association defined called 'received_friend_requests' with Class name 'FriendRequest' and foreign key 'recipient_id'", points: 1 do
+    it { should have_many(:received_friend_requests).class_name("FriendRequest").with_foreign_key("recipient_id") }
   end
 
-  describe "has a has_many association defined called 'accepted_sent_follow_requests' with scope where 'status' is \"accepted\"", points: 1 do
-    it { should have_many(:accepted_sent_follow_requests).class_name("FollowRequest").with_foreign_key("sender_id").conditions(status: "accepted") }
+  describe "has a has_many association defined called 'accepted_sent_friend_requests' with scope where 'status' is \"accepted\"", points: 1 do
+    it { should have_many(:accepted_sent_friend_requests).class_name("FriendRequest").with_foreign_key("sender_id").conditions(status: "accepted") }
   end
 
-  describe "has a has_many association defined called 'accepted_received_follow_requests' with scope where 'status' is \"accepted\"", points: 1 do
-    it { should have_many(:accepted_received_follow_requests).class_name("FollowRequest").with_foreign_key("recipient_id").conditions(status: "accepted") }
+  describe "has a has_many association defined called 'accepted_received_friend_requests' with scope where 'status' is \"accepted\"", points: 1 do
+    it { should have_many(:accepted_received_friend_requests).class_name("FriendRequest").with_foreign_key("recipient_id").conditions(status: "accepted") }
   end
 
-  describe "has a has_many (many-to_many) association defined called 'followers' through 'accepted_received_follow_requests' and source 'sender'", points: 1 do
-    it { should have_many(:followers).through(:accepted_received_follow_requests).source(:sender) }
+  describe "has a has_many (many-to_many) association defined called 'followers' through 'accepted_received_friend_requests' and source 'sender'", points: 1 do
+    it { should have_many(:followers).through(:accepted_received_friend_requests).source(:sender) }
   end
 
-  describe "has a has_many (many-to_many) association defined called 'leaders' through 'accepted_sent_follow_requests' and source 'recipient'", points: 1 do
-    it { should have_many(:leaders).through(:accepted_sent_follow_requests).source(:recipient) }
+  describe "has a has_many (many-to_many) association defined called 'leaders' through 'accepted_sent_friend_requests' and source 'recipient'", points: 1 do
+    it { should have_many(:leaders).through(:accepted_sent_friend_requests).source(:recipient) }
   end
 
-  describe "has a has_many (many-to_many) association defined called 'feed' through 'leaders' and source 'own_photos'", points: 1 do
-    it { should have_many(:feed).through(:leaders).source(:own_photos) }
+  describe "has a has_many (many-to_many) association defined called 'feed' through 'leaders' and source 'own_goals'", points: 1 do
+    it { should have_many(:feed).through(:leaders).source(:own_goals) }
   end
 
   describe "has a has_many (many-to_many) association defined called 'discover' through 'leaders' and source 'liked_photos'", points: 1 do

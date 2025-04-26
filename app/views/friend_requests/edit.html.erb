@@ -1,0 +1,12 @@
+<% content_for :title, "Editing friend request" %>
+
+<h1>Editing friend request</h1>
+
+<%= render "form", friend_request: @friend_request %>
+
+<br>
+
+<div>
+  <%= link_to "Show this friend request", @friend_request %> |
+  <%= link_to "Back to friend requests", friend_requests_path %>
+</div>

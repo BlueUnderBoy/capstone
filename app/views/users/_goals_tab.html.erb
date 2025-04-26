@@ -1,0 +1,9 @@
+<div class="row mb-2">
+  <div class="col-md-6 offset-md-3">
+    <%= render "users/profile_nav", user: @user %>
+  </div>
+</div>
+
+<% goals.each do |goal| %>
+  <%= render "goals/goal", goal: goal %>
+<% end %>

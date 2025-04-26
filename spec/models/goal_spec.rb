@@ -1,19 +1,20 @@
 # == Schema Information
 #
-# Table name: photos
+# Table name: goals
 #
-#  id             :bigint           not null, primary key
-#  caption        :text
-#  comments_count :integer          default(0)
-#  image          :string
-#  likes_count    :integer          default(0)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  owner_id       :bigint           not null
+#  id            :bigint           not null, primary key
+#  amount_needed :string
+#  amount_saved  :string
+#  image         :string
+#  name          :string
+#  status        :string           default("saving")
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  owner_id      :bigint           not null
 #
 # Indexes
 #
-#  index_photos_on_owner_id  (owner_id)
+#  index_goals_on_owner_id  (owner_id)
 #
 # Foreign Keys
 #
@@ -21,7 +22,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Photo, type: :model do
+RSpec.describe Goal, type: :model do
   describe "has a belongs_to association defined called 'owner' with Class name 'User'", points: 1 do
     it { should belong_to(:owner).class_name("User") }
   end

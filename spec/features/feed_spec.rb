@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "/[USERNAME]/feed" do
   it "can be visited", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
     sign_in(user)
 
     visit "/#{user.username}/feed"
@@ -10,28 +10,28 @@ describe "/[USERNAME]/feed" do
     expect(page.status_code).to be(200)
   end
 
-  it "shows their leader's photos", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+  it "shows their leader's goals", points: 1 do
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
     sign_in(user)
 
-    leader = User.create(username: "leader", email: "leader@example.com", password: "password", private: false, avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
-    photo = Photo.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
-    FollowRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
+    leader = User.create(username: "leader", email: "leader@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    goal = Goal.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
+    FriendRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
 
     visit "/#{user.username}/feed"
 
     expect(page).to have_tag("div", with: { class: "card" }) do
-      with_tag("img", with: { src: photo.image })
+      with_tag("img", with: { src: goal.image })
     end
   end
 
-  it "allows them to like their leader's photos", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+  it "allows them to like their leader's goals", points: 1 do
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
     sign_in(user)
 
-    leader = User.create(username: "leader", email: "leader@example.com", password: "password", private: false, avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
-    photo = Photo.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
-    FollowRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
+    leader = User.create(username: "leader", email: "leader@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    goal = Goal.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), name: "name", owner_id: leader.id)
+    FriendRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
 
     visit "/#{user.username}/feed"
 
@@ -56,13 +56,13 @@ describe "/[USERNAME]/feed" do
     expect(page).to have_content("Like")
   end
 
-  it "allows the user to add a comment on their leader's photos", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+  it "allows the user to add a comment on their leader's goals", points: 1 do
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
     sign_in(user)
 
-    leader = User.create(username: "leader", email: "leader@example.com", password: "password", private: false, avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
-    photo = Photo.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
-    FollowRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
+    leader = User.create(username: "leader", email: "leader@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    goal = Goal.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), name: "name", owner_id: leader.id)
+    FriendRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
 
     visit "/#{user.username}/feed"
 
@@ -73,13 +73,13 @@ describe "/[USERNAME]/feed" do
   end
 
   it "allows the user to delete their comment", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
     sign_in(user)
 
-    leader = User.create(username: "leader", email: "leader@example.com", password: "password", private: false, avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
-    photo = Photo.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
-    FollowRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
-    comment = Comment.create(body: "New comment", author_id: user.id, photo_id: photo.id)
+    leader = User.create(username: "leader", email: "leader@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    goal = Goal.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
+    FriendRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
+    comment = Comment.create(body: "New comment", author_id: user.id, goal_id: goal.id)
 
     visit "/#{user.username}/feed"
 
@@ -89,13 +89,13 @@ describe "/[USERNAME]/feed" do
   end
 
   it "allows the user to edit their comment", points: 1 do
-    user = User.create(username: "alice", email: "alice@example.com", password: "password", avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    user = User.create(username: "alice", email: "alice@example.com", password: "password", profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
     sign_in(user)
 
-    leader = User.create(username: "leader", email: "leader@example.com", password: "password", private: false, avatar_image: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
-    photo = Photo.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), caption: "caption", owner_id: leader.id)
-    FollowRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
-    comment = Comment.create(body: "New comment", author_id: user.id, photo_id: photo.id)
+    leader = User.create(username: "leader", email: "leader@example.com", password: "password", private: false, profile_pic: File.open("#{Rails.root}/spec/support/test_image.jpeg"))
+    goal = Goal.create(image: File.open("#{Rails.root}/spec/support/test_image.jpeg"), name: "name", owner_id: leader.id)
+    FriendRequest.create(sender_id: user.id, recipient_id: leader.id, status: "accepted")
+    comment = Comment.create(body: "New comment", author_id: user.id, goal_id: goal.id)
 
     visit "/#{user.username}/feed"
 
