@@ -6,9 +6,9 @@
 
     <p class="lead text-muted">posts by people you follow</p>
   </div>
-  <div class="card" id="card">
+
   <% @user.feed.latest.each do |goal| %>
     <%= render "goals/goal", goal: goal %>
   <% end %>
-  </div>
+
 </div>
