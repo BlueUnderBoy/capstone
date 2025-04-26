@@ -18,7 +18,7 @@
       <% if user_signed_in? %>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <%= link_to "/#{current_user.username}/feed", class: "nav-link" do %>
+            <%= link_to "/#{current_user.username}/feed", class: "nav-link" , style: "color: #FFFFFF" do %>
               <i class="fas fa-users fa-fw"></i> Feed
             <% end %>
           </li>
