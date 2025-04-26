@@ -34,6 +34,10 @@
     <%= form.text_field :amount_saved %>
   </div>
 
+  <div>
+  <%= form.hidden_field :status, value: "saving" %>
+</div>
+
   <div class="actions d-grid gap-2">
     <%= form.submit class: "btn btn-outline-primary btn-block" %>
   </div>
