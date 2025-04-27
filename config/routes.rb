@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   
   get ":username" => "users#show", as: :user
 
+  get ":username/completed" => "users#completed", as: :completed
+
+  get ":username/pending" => "users#pending", as: :pending
   
   get ":username/feed" => "users#feed"
   

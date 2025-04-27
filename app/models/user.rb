@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   has_many :own_goals, class_name: "Goal", foreign_key: "owner_id"
   has_many :own_goals, foreign_key: "owner_id", class_name: "Goal"
+
+  has_many :pending_goals, -> { saving }, foreign_key: :owner_id, class_name: "Goal"
+  has_many :completed_goals, -> { completed }, foreign_key: :owner_id, class_name: "Goal"
+
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
   has_many :accepted_sent_friend_requests, -> { accepted }, foreign_key: :sender_id, class_name: "FriendRequest"
   has_many :pending_sent_friend_requests, -> { pending }, foreign_key: :sender_id, class_name: "FriendRequest"
