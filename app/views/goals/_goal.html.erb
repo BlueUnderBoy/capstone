@@ -7,16 +7,17 @@
 
           <%= link_to goal.owner.username, user_path(goal.owner.username), class: "text-dark link-underline-dark link-underline-opacity-0 link-underline-opacity-100-hover" %>
         </h2>
+        <% if current_user.username == goal.owner.username %>
+          <div>
+            <%= link_to edit_goal_path(goal), class: "btn btn-link btn-sm text-muted" do %>
+              <i class="fas fa-edit fa-fw"></i>
+            <% end %>
 
-        <div>
-          <%= link_to edit_goal_path(goal), class: "btn btn-link btn-sm text-muted" do %>
-            <i class="fas fa-edit fa-fw"></i>
-          <% end %>
-
-          <%= button_to goal, method: :delete, class: "btn btn-link btn-sm text-muted", form_class: "d-inline-block" do %>
-            <i class="fas fa-trash fa-fw"></i>
-          <% end %>
-        </div>
+            <%= button_to goal, method: :delete, class: "btn btn-link btn-sm text-muted", form_class: "d-inline-block" do %>
+              <i class="fas fa-trash fa-fw"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="card" id="card">
         <div style="display: flex; justify-content: center;">
