@@ -53,25 +53,26 @@
 
         <% end %>
       </div>
+      <% if current_user.username == user.username %>
+        <div>
+          <%=
+            link_to "#",
+              class: "link-underline link-underline-opacity-0 link-underline-opacity-100-hover",
+              data: { 
+                "bs-toggle": "modal", 
+                "bs-target": "##{dom_id(user)}_pending"
+              } do %>
 
-      <div>
-        <%=
-          link_to "#",
-            class: "link-underline link-underline-opacity-0 link-underline-opacity-100-hover",
-            data: { 
-              "bs-toggle": "modal", 
-              "bs-target": "##{dom_id(user)}_pending"
-            } do %>
+            <span class="font-weight-bold">
+              <% pr = FriendRequest.where(recipient_id: current_user.id, status: "pending") %>
+              <%= pr.count %>
+            </span>
 
-          <span class="font-weight-bold">
-            <% pr = FriendRequest.where(recipient_id: current_user.id, status: "pending") %>
-            <%= pr.count %>
-          </span>
+            pending
 
-          pending
-
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
     <div class="row mb-3">
@@ -149,10 +150,12 @@
     target: "#{dom_id(user)}_following"
 %>
 
-<%=
-  render "users/connected_users_modal",
-    user: user,
-    connected_users: user.pending,
-    description: "pending",
-    target: "#{dom_id(user)}_pending"
-%>
+<% if current_user.username == user.username %>
+  <%=
+    render "users/connected_users_modal",
+      user: user,
+      connected_users: user.pending,
+      description: "pending",
+      target: "#{dom_id(user)}_pending"
+  %>
+<% end %>
