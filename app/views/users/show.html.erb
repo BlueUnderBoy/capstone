@@ -20,6 +20,8 @@
   </div>
 
   <% @user.own_goals.each do |goal| %>
-    <%= render "goals/goal", goal: goal %>
+    
+      <%= render "goals/goal", goal: goal %>
+
   <% end %>
 </div>

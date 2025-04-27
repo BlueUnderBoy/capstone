@@ -29,6 +29,9 @@ class Goal < ApplicationRecord
   validates :image, presence: true 
   validates :amount_needed, presence: true
 
+  has_many :completed, dependent: :destroy
+  has_many :pending, dependent: :destroy
+
   scope :past_week, -> { where(created_at: 1.week.ago...) }
   scope :latest, -> { order(created_at: :desc) }
 

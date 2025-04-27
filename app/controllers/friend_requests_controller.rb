@@ -9,7 +9,7 @@ class FriendRequestsController < ApplicationController
     respond_to do |format|
       if @friend_request.save
         format.html { redirect_back fallback_location: root_url, notice: "Friend request was successfully created." }
-        format.json { render :show, status: :created, location: @riend_request }
+        format.json { render :show, status: :created, location: @friend_request }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @friend_request.errors, status: :unprocessable_entity }

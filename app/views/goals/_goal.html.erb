@@ -1,44 +1,54 @@
+<div class="row mb-4">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body py-3 d-flex align-items-center justify-content-between">
+        <h2 class="h5 m-0 p-0 d-flex align-items-center">
+          <%= image_tag goal.owner.profile_pic_url, class: "rounded-circle me-2 img-cover img-small" %>
 
-<div class="card">
-  <div class="card-body py-3 d-flex align-items-center justify-content-between">
-    <h2 class="h5 m-0 p-0 d-flex align-items-center">
-      <%= image_tag goal.owner.profile_pic_url, class: "rounded-circle me-2 img-cover img-small" %>
+          <%= link_to goal.owner.username, user_path(goal.owner.username), class: "text-dark link-underline-dark link-underline-opacity-0 link-underline-opacity-100-hover" %>
+        </h2>
+        <% if current_user.username == goal.owner.username %>
+          <div>
+            <%= link_to edit_goal_path(goal), class: "btn btn-link btn-sm text-muted" do %>
+              <i class="fas fa-edit fa-fw"></i>
+            <% end %>
 
-      <%= link_to goal.owner.username, user_path(goal.owner.username), class: "text-dark link-underline-dark link-underline-opacity-0 link-underline-opacity-100-hover" %>
-    </h2>
+            <%= button_to goal, method: :delete, class: "btn btn-link btn-sm text-muted", form_class: "d-inline-block" do %>
+              <i class="fas fa-trash fa-fw"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card" id="card">
+        <div style="display: flex; justify-content: center;">
+        <%= image_tag goal.image_url, class: "img-large" %>
+        <!--< @pi = goal.id >-->
+        </div>      
+      </div>
 
-    <div>
-      <%= link_to edit_goal_path(goal), class: "btn btn-link btn-sm text-muted" do %>
-        <i class="fas fa-edit fa-fw"></i>
-      <% end %>
+      <div class="card-body">
+        <!--<div class="mb-3 d-flex justify-content-between">
+          < render "photos/likes", photo: photo >
+        </div>-->
+        <p class="card-text"><%= goal.name %></p>
+        <p class="card-text">Amount Needed: $<%= goal.amount_needed %></p>
+        <p class="card-text">Amount Saved: $<%= goal.amount_saved %></p>
+        <% if goal.status == "saving" %>
+          <p class="card-text" style="background-color: #FFDF00; border-radius: 10px; text-align: center;"><%= goal.status %></p>
+        <% else %>
+          <p class="card-text" style="background-color:rgb(17, 194, 46); border-radius: 10px; text-align: center;"><%= goal.status %></p>
+        <% end %>
+      </div>
 
-      <%= button_to goal, method: :delete, class: "btn btn-link btn-sm text-muted", form_class: "d-inline-block" do %>
-        <i class="fas fa-trash fa-fw"></i>
-      <% end %>
+      <ul class="list-group list-group-flush">
+        <!--< photo.comments.each do |comment| >
+          < render "comments/comment", comment: comment >
+        < end >
+
+        <div class="card-body">
+          < render "comments/form", comment: photo.comments.build >
+        </div>-->
+      </ul>
     </div>
   </div>
-  <div class="card" id="card">
-    <%= image_tag goal.image_url, class: "img-large" %>
-    <!--< @pi = goal.id >-->
-  </div>
-
-  <div class="card-body">
-    <!--<div class="mb-3 d-flex justify-content-between">
-      < render "photos/likes", photo: photo >
-    </div>-->
-    <p class="card-text"><%= goal.name %></p>
-    <p class="card-text">Amount Needed: $ <%= goal.amount_needed %></p>
-    <p class="card-text">Amount Saved: $ <%= goal.amount_saved %></p>
-    <p class="card-text" style="background-color: #00FF00; border-radius: 10px; text-align: center;"><%= goal.status %></p>
-  </div>
-
-  <ul class="list-group list-group-flush">
-    <!--< photo.comments.each do |comment| >
-      < render "comments/comment", comment: comment >
-    < end >
-
-    <div class="card-body">
-      < render "comments/form", comment: photo.comments.build >
-    </div>-->
-  </ul>
 </div>

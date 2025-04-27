@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <%= render "users/user", user: @user %>
+      <%= render "users/profile_nav", user: @user %>
+
+
+    </div>
+  </div>
+
+  <% @user.own_goals.each do |goal| %>
+    <% if goal.status == "completed" %>
+      <%= render "goals/goal", goal: goal %>
+    <% end %>
+  <% end %>
+</div>

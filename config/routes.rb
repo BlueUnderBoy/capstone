@@ -6,10 +6,18 @@ Rails.application.routes.draw do
   resources :friend_requests
   resources :goals
   resources :users, only: [ :index ]
-
+  
+  get "/search" => "finds#search"
+  
   get ":username" => "users#show", as: :user
+
+  get ":username/completed" => "users#completed", as: :completed
+
+  get ":username/pending" => "users#pending", as: :pending
   
   get ":username/feed" => "users#feed"
+  
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
