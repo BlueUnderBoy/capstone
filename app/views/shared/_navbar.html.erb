@@ -1,10 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
   <div class="container" , style="background-color: #063970; border-radius: 10px;">
     <!--<a class="navbar-brand" href="#">ZMoney</a>-->
-    <%= link_to "ZMoney", root_path, class: "navbar-brand", style: "color: #FFFFFF" %>
+    <%= link_to root_path, class: "navbar-brand", style: "color: #FFFFFF" do %>
+      <%= image_tag "zlogo.png", alt: "Logo Icon", style: "height: 30px; margin-right: 5px; vertical-align: middle;" %>
+      ZMoney
+    <% end %>
+    <!--< link_to "ZMoney", root_path, class: "navbar-brand", style: "color: #FFFFFF" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button>-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!--<li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
