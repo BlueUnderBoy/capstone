@@ -15,13 +15,13 @@ Features
 
 Table of Contents
 -
-- [Installation] (Installation)
+- [Installation] (##Installation)
 - [Usage] (#Usage)
 - Database schema ERD (#Database schema ERD)
 - Contributing (#Contributing)
 - License (#License)
  
-Installation
+## Installation
 - 
 Clone the repository:
 https://github.com/BlueUnderBoy/ZMoney.git
