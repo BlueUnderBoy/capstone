@@ -1,14 +1,17 @@
-# zmoney
+# ZMoney
 Description
+-
 ZMoney is a financial management and wealth planning tool to help GenZ and youth with their financial planning. 
 
 Live link:
+-
 https://zmoney.onrender.com
 
 Features
-Upload files and manage multiple versions
-Set a default version for each file for instant view and download
-Folders shared across users for collaborative work
+-
+- Keep track of savings goals
+- Share savings goals with friends
+- See friend's savings goals
 Table of Contents
 Installation
 Usage
