@@ -15,7 +15,7 @@ Features
 
 Table of Contents
 -
-- [Installation] (#Installation)
+- [Installation] (Installation)
 - [Usage] (#Usage)
 - Database schema ERD (#Database schema ERD)
 - Contributing (#Contributing)
