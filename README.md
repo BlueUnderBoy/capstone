@@ -12,13 +12,17 @@ Features
 - Keep track of savings goals
 - Share savings goals with friends
 - See friend's savings goals
+
 Table of Contents
+-
+- [Installation] (#Installation)
+- [Usage] (#Usage)
+- Database schema ERD (#Database schema ERD)
+- Contributing (#Contributing)
+- License (#License)
+ 
 Installation
-Usage
-Database schema ERD
-Contributing
-License
-Installation
+- 
 Clone the repository:
 https://github.com/BlueUnderBoy/ZMoney.git
 Navigate to the project directory:
