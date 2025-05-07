@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "users#feed"
-  
   devise_for :users
+  
+  root 'home#index'
   
   resources :friend_requests
   resources :goals
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get ":username/pending" => "users#pending", as: :pending
   
-  get ":username/feed" => "users#feed"
+  get ":username/feed" => "users#feed", as: :feed
   
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
