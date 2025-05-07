@@ -5,7 +5,7 @@
       <h1 style="font-size: 55pt;"> & easy</h1>
       <p style="font-size: 25pt;">ZMoney is the tool to help you save, plan, learn, and earn. </p>
       <% if user_signed_in? %>
-        <%= form_with url: feed_path, method: :get do %>
+        <%= form_with url: feed_path(current_user.username), method: :get do %>
           <%= submit_tag "Feed", style: "background-color: #063970; color: white; border-radius: 10px; padding: 10px 20px; cursor: pointer; width: 300px; font-size: 20pt;" %>
         <% end %>
       <% else %>
