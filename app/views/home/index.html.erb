@@ -1,2 +1,14 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div style="background-color:rgb(192, 213, 233); height: 700px; width: 90%; border-radius: 20px; display: flex; justify-content: space-around;">
+  <div style="margin: 15px; margin-top: 150px;">
+    <h1 style="font-size: 55pt;">Safe, fast,</h1>
+    <h1 style="font-size: 55pt;"> & easy</h1>
+    <p style="font-size: 25pt;">See why millions use ZMoney to save, plan, learn, and earn. </p>
+    <p></p>
+    <%= form_with url: new_user_registration_path, method: :get do %>
+      <%= submit_tag "Sign up Today!", style: "background-color: #063970; color: white; border-radius: 10px; padding: 10px 20px; cursor: pointer; width: 300px; font-size: 20pt;" %>
+    <% end %>
+  </div>
+  <div style="margin: 15px;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0cpHdQKAj8M?si=0aGQia5YYKh3oHgN" style="border-radius: 15px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</div>
