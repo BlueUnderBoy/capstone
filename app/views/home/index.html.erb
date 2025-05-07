@@ -1,14 +1,48 @@
-<div style="background-color:rgb(192, 213, 233); height: 700px; width: 90%; border-radius: 20px; display: flex; justify-content: space-around;">
-  <div style="margin: 15px; margin-top: 150px;">
-    <h1 style="font-size: 55pt;">Safe, fast,</h1>
-    <h1 style="font-size: 55pt;"> & easy</h1>
-    <p style="font-size: 25pt;">See why millions use ZMoney to save, plan, learn, and earn. </p>
-    <p></p>
-    <%= form_with url: new_user_registration_path, method: :get do %>
-      <%= submit_tag "Sign up Today!", style: "background-color: #063970; color: white; border-radius: 10px; padding: 10px 20px; cursor: pointer; width: 300px; font-size: 20pt;" %>
-    <% end %>
+<div style="width: 100%;">
+  <div style="background-color:rgb(192, 213, 233); height: 640px; width: 100%; border-radius: 20px; display: flex; justify-content: space-around;padding-top: 50px; margin-bottom: 50px;">
+    <div style="margin: 15px; margin-top: 150px;">
+      <h1 style="font-size: 55pt;">Safe, fast,</h1>
+      <h1 style="font-size: 55pt;"> & easy</h1>
+      <p style="font-size: 25pt;">ZMoney is the tool to help you save, plan, learn, and earn. </p>
+      <% if user_signed_in? %>
+        <%= form_with url: feed_path, method: :get do %>
+          <%= submit_tag "Feed", style: "background-color: #063970; color: white; border-radius: 10px; padding: 10px 20px; cursor: pointer; width: 300px; font-size: 20pt;" %>
+        <% end %>
+      <% else %>
+        <%= form_with url: new_user_registration_path, method: :get do %>
+          <%= submit_tag "Sign up Today!", style: "background-color: #063970; color: white; border-radius: 10px; padding: 10px 20px; cursor: pointer; width: 300px; font-size: 20pt;" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div style="margin: 15px;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/0cpHdQKAj8M?si=0aGQia5YYKh3oHgN" style="border-radius: 15px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
   </div>
-  <div style="margin: 15px;">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/0cpHdQKAj8M?si=0aGQia5YYKh3oHgN" style="border-radius: 15px;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <div style="display: flex; width: 100%; margin-bottom: 50px;">
+    <img src="left-wing.png" height="200px">
+    <div style="width: 100%; align-content: center;">
+      <h1 style="display: flex; justify-content: center;">Campus1871 Innovation Challenge Awarded</h1>
+      <h1 style="display: flex; justify-content: center;">2025 Winner<h1>
+    </div>
+    <img src="right-wing.png" height="200px">
+  </div>
+  <div style="background-color:rgb(192, 213, 233); height: 700px; width: 100%; border-radius: 20px; padding-top: 50px;">
+    <div style="width: 100%; align-items: center;">
+      <h1 style="font-size: 50pt; font-weight: normal; display: flex; justify-content: center;">Saving money is</h1>
+      <h1 style="font-size: 50pt; font-weight: normal; display: flex; justify-content: center;">just the start</h1>
+    </div>
+    <div style="margin-top: 50px;">
+      <h5 style="font-weight: normal; width: 100%; display: flex; justify-content: center;">
+        ZMoney can help you retain more income, learn retirment plans, and even explore the stock market.
+      </h5>
+      <h5 style="font-weight: normal; width: 100%; display: flex; justify-content: center;">
+        Use the app to learn more about wealth.
+      </h5>
+    </div>
+    <div>
+      <img>
+      <img>
+      <img>
+    <div>
   </div>
 </div>
