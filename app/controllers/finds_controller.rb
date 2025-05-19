@@ -1,5 +1,7 @@
 class FindsController < ApplicationController
 
+  # NOTE: Maybe this could go into the users_controller since it's searching for other people
+
   def search
     respond_to do |format|
       if params[:find].present?
