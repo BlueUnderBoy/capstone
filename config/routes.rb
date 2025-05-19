@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   
   get "/search" => "finds#search"
   
+  # NOTE: These routes from the users, can go into the collection resources, eg:
+  # resources :photos do
+  #   collection do
+  #     get "search"
+  #   end
+  # end
   get ":username" => "users#show", as: :user
 
   get ":username/completed" => "users#completed", as: :completed

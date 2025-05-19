@@ -1,5 +1,6 @@
 <h2>Resend confirmation instructions</h2>
 
+<%# NOTE: Nice job running the devise g views commnad with form_for %>
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 

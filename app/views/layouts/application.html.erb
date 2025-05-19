@@ -10,6 +10,7 @@
 
     <%= render partial: "shared/cdn_assets" %>
 
+    <%# NOTE: This is cool to do for different titles of each view %>
     <%= yield :head %>
 
     <link rel="icon" href="/zlogo.png" type="image/png">
@@ -40,6 +41,7 @@
   </body>
 
 </html>
+<%# NOTE: The footer needs to be inside the <html> tag and could be in a partial %>
    <footer style="background-color:rgb(35, 35, 70); margin-top: 300px; margin-bottom: 0px; color: #FFFFFF; position: fixed;bottom: 0;">
       <div><p style="margin: 20px; font-size: 7pt; height: 30px;">Some or all of the services described herein may not be permissible for ZMoney clients and their affiliates or related entities.
 
